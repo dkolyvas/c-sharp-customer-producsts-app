@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <h1> Products List</h1>
+    <table class="table table-primary mt-2 mb-2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tdata>
+            @if (ViewData["Products"] is not null)
+            {
+                @foreach (var product in ViewData["Products"] as List<CustomerProductsApp.DTO.ProductShowDTO>)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@product.Price</td>
+                        <td>@product.Quantity</td>
+                        
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="~/Product/Update/@product.Id">Update</a>
+                            <a class="btn btn-danger btn-sm" href="~/Product/Delete/@product.Id">Delete</a>
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        </tdata>
+    </table>
+    <div class="row offset-4 col-md-2 mb-3">
+        <a class="btn btn-primary" href="~/Product/Insert">Add New</a>
+    </div>
+    <div class="text-warning text-sm-start">
+        <p>
+            @if (ViewData["Errors"] is not null)
+            {
+                @foreach (var err in ViewData["Errors"] as List<String>)
+                {
+                    @err
+                }
+            }
+        </p>
+    </div>
+</div>
+
+

@@ -1,0 +1,42 @@
+﻿@model CustomerProductsApp.DTO.UserRegisterDTO
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container-md p-3 border border-1 border-danger m-auto">
+    <form asp-controller="User" asp-action="Register" method="post">
+        <div class="mb-2 row">
+            <label for="email" class="form-text col-md-2">Email</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="email" id="email" />
+            </div>
+        </div>
+        <div class="mb-2 row">
+            <label for="password" class="form-text col-md-2">Password</label>
+            <div class="col-md-6">
+             <input type="password" class="form-control" name="password" id="password" />
+            </div>
+        </div>
+        <div class="mb-2 row">
+            <label for="confirmpassword" class="form-text col-md-2">Repeat Password</label>
+            <div class="col-md-6">
+                <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" />
+            </div>
+        </div>
+        <div class="mb-2 offset-md-2">
+            <button type="submit" class="btn btn-danger col-md-3 ">Register</button>
+        </div>
+    </form>
+</div>
+<div class="text-danger text-sm-start p-2">
+    <p>
+        @if(ViewData["Errors"] is not null)
+        {
+            @foreach(var err in ViewData["Errors"] as List<String>)
+            {
+                @err
+            }
+        }
+    </p>
+</div>
+

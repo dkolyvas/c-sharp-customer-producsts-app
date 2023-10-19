@@ -1,0 +1,55 @@
+﻿@model CustomerProductsApp.DTO.ProductShowDTO
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <h1> Customers List</h1>
+    <table class="table table-primary mt-2 mb-2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tdata>
+            @if(ViewData["Customers"] is not null)
+            {
+                @foreach(var customer in ViewData["Customers"] as List<CustomerProductsApp.DTO.CustomerShowDTO>){
+                    <tr>
+                        <td>@customer.Id</td>
+                        <td>@customer.Firstname</td>
+                        <td>@customer.Lastname</td>
+                        <td>@customer.Address</td>
+                        <td>@customer.Phone</td>
+                        <td><a class="btn btn-primary btn-sm" href="~/Customer/Update/@customer.Id">Update</a>
+                            <a class="btn btn-danger btn-sm" href="~/Customer/Delete/@customer.Id">Delete</a>
+                            <a class="btn btn-success btn-sm" href="~/Order/Index?customerid=@customer.Id">Orders</a>
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        </tdata>
+    </table>
+    <div class="row offset-4 col-md-2 mb-3">
+        <a class="btn btn-primary" href="~/Customer/Insert">Add New</a>
+    </div>
+    <div class="text-warning text-sm-start">
+        <p>
+            @if (ViewData["Errors"] is not null)
+            {
+                @foreach (var err in ViewData["Errors"] as List<String>)
+                {
+                    @err
+                }
+            }
+        </p>
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model CustomerProductsApp.DTO.OrderUpdateDTO
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="container p-3 border border-1 border-danger m-auto">
+    <h1> New order for customer @ViewData["Customer"]</h1>
+    <form  asp-controller="Order", asp-action="Update" asp-route-customerid=@Model.CustomerId method="post">
+        <div class="mb-2 row">
+            <label for="firstname" class="form-text col-md-2">Name</label>
+            <div class="col-md-6">
+                <select class="form-control" asp-for=@Model.ProductId name="productid" id="productid">
+                    @if (ViewData["Products"] is not null)
+                    {
+                        @foreach (var product in ViewData["Products"] as List<CustomerProductsApp.DTO.ProductShowDTO>)
+                        {
+                            <option value=@product.Id>@product.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="mb-2 row">
+            <label for="date" class="form-text col-md-2">Date</label>
+            <div class="col-md-6">
+                <input type="date" class="form-control" asp-for=@Model.Date name="date" id="date" />
+            </div>
+        </div>
+
+
+        <div class="mb-2 offset-md-2">
+            <button type="submit" class="btn btn-danger col-md-3 ">Update</button>
+        </div>
+    </form>
+</div>
+<div class="text-danger text-sm-start p-2">
+    <p>
+        @if (ViewData["Errors"] is not null)
+        {
+            @foreach (var err in ViewData["Errors"] as List<String>)
+            {
+                @err
+            }
+        }
+    </p>
+</div>
+
+

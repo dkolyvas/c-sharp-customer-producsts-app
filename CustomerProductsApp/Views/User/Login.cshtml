@@ -1,0 +1,32 @@
+﻿@model CustomerProductsApp.DTO.UserLoginDTO
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="container-md m-auto border border-1 border-white p-3">
+    <form asp-controller="User" asp-action="Login" method="post">
+        <div class="row mb-1">
+            <label for="email" class="form-text col-md-2">Username</label>
+            <div class="col-md-6">
+                <input id="email" name="email" class="form-control"  />
+            </div>
+        </div>
+        <div class="row mb-1">
+            <label for="password" class="form-text col-md-2">Password</label>
+            <div class="col-md-6">
+                <input type="password" id="password" name="password" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-1">
+            <button class="btn btn-danger col-md-3 offset-md-5" type="submit">Login</button>
+        </div>
+    </form>
+    <div class="col offset-md-2">
+        <p>If you are not already a user you can <a href="~/User/Register">register here</a>  </p>
+    </div>
+
+    <div class="text-danger text-sm-start">
+        @ViewData["Error"]
+    </div>
+
+</div>
+

@@ -1,0 +1,51 @@
+﻿@model CustomerProductsApp.DTO.CustomerUpdateDTO
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="container p-3 border border-1 border-danger m-auto">
+    <h1> Update customer</h1>
+    <form asp-controller="Customer" asp-action="Update" method="post">
+       
+        <div class="mb-2 row">
+            <label for="firstname" class="form-text col-md-2">Name</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control"  asp-for=@Model.Firstname  name="firstname" id="firstname" />
+            </div>
+        </div>
+        <div class="mb-2 row">
+            <label for="lastname" class="form-text col-md-2">Surname</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control"  asp-for=@Model.Lastname  name="lastname" id="lastname" />
+            </div>
+        </div>
+        <div class="mb-2 row">
+            <label for="address" class="form-text col-md-2">Address</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control"  asp-for=@Model.Address  name="address" id="address" />
+            </div>
+        </div>
+        <div class="mb-2 row">
+            <label for="phone" class="form-text col-md-2">Phone number</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control"  asp-for=@Model.Phone  name="phone" id="phone" />
+            </div>
+        </div>
+
+        <div class="mb-2 offset-md-2">
+            <button type="submit" class="btn btn-danger col-md-3 ">Submit</button>
+        </div>
+    </form>
+</div>
+<div class="text-danger text-sm-start p-2">
+    <p>
+        @if (ViewData["Errors"] is not null)
+        {
+            @foreach (var err in ViewData["Errors"] as List<String>)
+            {
+                @err
+            }
+        }
+    </p>
+</div>
+

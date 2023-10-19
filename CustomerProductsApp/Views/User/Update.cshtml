@@ -1,0 +1,43 @@
+﻿@model CustomerProductsApp.DTO.UserUpdateDTO
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="container-md p-3 border border-1 border-danger m-auto">
+    <form asp-controller="User" asp-action="Update" method="post">
+        <div class="mb-2 row">
+            <label for="oldpassword" class="form-text col-md-2">Old Password</label>
+            <div class="col-md-6">
+                <input type="password" asp-for=@Model.OldPassword class="form-control" name="oldpassword" id="oldpassword" />
+            </div>
+        </div>
+       
+        <div class="mb-2 row">
+            <label for="newpassword" class="form-text col-md-2">New Password</label>
+            <div class="col-md-6">
+                <input type="password" asp-for=@Model.NewPassword class="form-control" name="newpassword" id="newpassword" />
+            </div>
+        </div>
+        <div class="mb-2 row">
+            <label for="confirmpassword" class="form-text col-md-2">Repeat Password</label>
+            <div class="col-md-6">
+                <input type="password" asp-for=@Model.ConfirmPassword class="form-control" name="confirmpassword" id="confirmpassword" />
+            </div>
+        </div>
+        <div class="mb-2 offset-md-2">
+            <button type="submit" class="btn btn-danger col-md-3 ">Update</button>
+        </div>
+    </form>
+</div>
+<div class="text-danger text-sm-start p-2">
+    <p>
+        @if (ViewData["Errors"] is not null)
+        {
+            @foreach (var err in ViewData["Errors"] as List<String>)
+            {
+                @err
+            }
+        }
+    </p>
+</div>
+
